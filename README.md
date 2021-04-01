@@ -15,7 +15,7 @@ go get -u github.com/a8m/enter
 enter 
 ```
 
-Pass custom package schema path (defaults to `ent/schema`):
+Pass a custom schema path (defaults to `ent/schema`):
 
 ```
 enter ./pkg/ent/schema
