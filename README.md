@@ -9,7 +9,7 @@ for [Ent schema](https://entgo.io/docs/schema-def) using [mermaid.js](https://me
 go get -u github.com/a8m/enter
 ```
 
-### Examples:
+### Example:
 
 ```
 enter 
@@ -20,3 +20,5 @@ Pass custom package schema path (defaults to `ent/schema`):
 ```
 enter ./pkg/ent/schema
 ```
+
+![ERD](https://user-images.githubusercontent.com/7413593/113307613-00f7d800-930e-11eb-8d22-0627b5dfd41d.png)
