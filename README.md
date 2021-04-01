@@ -9,7 +9,7 @@ for [Ent schema](https://entgo.io/docs/schema-def) using [mermaid.js](https://me
 go get -u github.com/a8m/enter
 ```
 
-### Example:
+### Example
 
 ```
 enter 
