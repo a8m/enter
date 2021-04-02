@@ -31,17 +31,17 @@ func main() {
 }
 
 var tmpl = template.Must(template.New("er").
-		Funcs(template.FuncMap{
-			"fmtType": func(s string) string {
-				return strings.NewReplacer(
-					".", "DOT",
-					"*", "STAR",
-					"[", "LBRACK",
-					"]","RBRACK",
-					).Replace(s)
-			},
+	Funcs(template.FuncMap{
+		"fmtType": func(s string) string {
+			return strings.NewReplacer(
+				".", "DOT",
+				"*", "STAR",
+				"[", "LBRACK",
+				"]", "RBRACK",
+			).Replace(s)
+		},
 	}).
-		Parse(`<!DOCTYPE html>
+	Parse(`<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
