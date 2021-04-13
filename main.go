@@ -52,7 +52,7 @@ var tmpl = template.Must(template.New("er").
 erDiagram
 {{- range $n := . }}
     {{ $n.Name }} {
-        {{ $n.ID.Type }} {{ $n.ID.Name }}
+        {{ fmtType $n.ID.Type.String }} {{ $n.ID.Name }}
 	{{- range $f := $n.Fields }}
         {{ fmtType $f.Type.String }} {{ $f.Name }}
 	{{- end }}
