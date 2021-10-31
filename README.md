@@ -21,4 +21,6 @@ Pass a custom schema path (defaults to `ent/schema`):
 enter ./pkg/ent/schema
 ```
 
+Open `er.html` in web browser to view the diagram:
+
 ![ERD](https://user-images.githubusercontent.com/7413593/113307613-00f7d800-930e-11eb-8d22-0627b5dfd41d.png)
