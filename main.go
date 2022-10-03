@@ -71,6 +71,7 @@ erDiagram
 		</div>
 	{{- end }}
 	<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+	<script src="https://unpkg.com/panzoom@9.4.3/dist/panzoom.min.js"></script>
 	<script>
 		mermaid.mermaidAPI.initialize({
 			startOnLoad: true,
@@ -83,6 +84,7 @@ erDiagram
 				text.textContent = text.textContent.replace('RBRACK', ']');
 			});
 			observer.disconnect();
+			panzoom(document.getElementById('er-diagram'));
 		});
 		observer.observe(document.getElementById('er-diagram'), { attributes: true, childList: true });
 	</script>
