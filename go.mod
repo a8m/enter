@@ -2,10 +2,10 @@ module github.com/a8m/enter
 
 go 1.19
 
-require entgo.io/ent v0.11.3-0.20220824145844-79fe0ebcd627
+require entgo.io/ent v0.11.4
 
 require (
-	ariga.io/atlas v0.6.2-0.20220819114704-2060066abac7 // indirect
+	ariga.io/atlas v0.8.3 // indirect
 	github.com/agext/levenshtein v1.2.1 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/go-openapi/inflect v0.19.0 // indirect
