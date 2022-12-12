@@ -77,7 +77,7 @@ erDiagram
 			startOnLoad: true,
 		});
 		var observer = new MutationObserver((event) => {
-			document.querySelectorAll('text[id^=entity]').forEach(text => {
+			document.querySelectorAll('text[id^=text-entity]').forEach(text => {
 				text.textContent = text.textContent.replace('DOT', '.');
 				text.textContent = text.textContent.replace('STAR', '*');
 				text.textContent = text.textContent.replace('LBRACK', '[');
