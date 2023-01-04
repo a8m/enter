@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"flag"
 	"io/ioutil"
 	"log"
 	"os"
@@ -13,6 +14,10 @@ import (
 )
 
 func main() {
+	formatPtr := flag.String("format", "html", "Format to output (html, md)")
+	flag.Parse()
+	outPtr := flag.String("out", "er.html", "Output file name")
+
 	path := "./ent/schema"
 	if len(os.Args) > 1 {
 		path = os.Args[1]
@@ -22,15 +27,61 @@ func main() {
 		log.Fatalln(err)
 	}
 	var b bytes.Buffer
+
+	tmpl := htmlTmpl
+	out := "er.html"
+	if *formatPtr == "md" {
+		tmpl = mdTmpl
+		out = "er.md"
+	}
+	if *outPtr != "" {
+		out = *outPtr
+	}
+
 	if err := tmpl.Execute(&b, graph); err != nil {
 		log.Fatal(err)
 	}
-	if err := ioutil.WriteFile("er.html", b.Bytes(), 0644); err != nil {
+	if err := ioutil.WriteFile(out, b.Bytes(), 0644); err != nil {
 		log.Fatal(err)
 	}
 }
 
-var tmpl = template.Must(template.New("er").
+var mdTmpl = template.Must(template.New("er").
+	Funcs(template.FuncMap{
+		"fmtType": func(s string) string {
+			return strings.NewReplacer(
+				".", "DOT",
+				"*", "STAR",
+				"[", "LBRACK",
+				"]", "RBRACK",
+			).Replace(s)
+		},
+	}).
+	Parse(`{{- with $.Nodes }}
+` + "```" + `mermaid
+erDiagram
+{{- range $n := . }}
+{{ $n.Name }} {
+{{- if $n.HasOneFieldID }}
+	{{ fmtType $n.ID.Type.String }} {{ $n.ID.Name }}
+{{- end }}
+{{- range $f := $n.Fields }}
+	{{ fmtType $f.Type.String }} {{ $f.Name }}
+{{- end }}
+}
+{{- end }}
+{{- range $n := . }}
+{{- range $e := $n.Edges }}
+{{- if not $e.IsInverse }}
+	{{- $rt := "|o--o|" }}{{ if $e.O2M }}{{ $rt = "|o--o{" }}{{ else if $e.M2O }}{{ $rt = "}o--o|" }}{{ else if $e.M2M }}{{ $rt = "}o--o{" }}{{ end }}
+	{{ $n.Name }} {{ $rt }} {{ $e.Type.Name }} : "{{ $e.Name }}{{ with $e.Ref }}/{{ .Name }}{{ end }}"
+{{- end }}
+{{- end }}
+{{- end }}
+` + "```" + `
+{{- end }}`))
+
+var htmlTmpl = template.Must(template.New("er").
 	Funcs(template.FuncMap{
 		"fmtType": func(s string) string {
 			return strings.NewReplacer(

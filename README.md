@@ -6,13 +6,13 @@ for [Ent schema](https://entgo.io/docs/schema-def) using [mermaid.js](https://me
 ### Install
 
 ```
-go get -u github.com/a8m/enter
+go get -u github.com/kwoodhouse93/enter
 ```
 
 ### Example
 
 ```
-enter 
+enter
 ```
 
 Pass a custom schema path (defaults to `ent/schema`):

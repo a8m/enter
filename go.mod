@@ -1,4 +1,4 @@
-module github.com/a8m/enter
+module github.com/kwoodhouse93/enter
 
 go 1.19
 
