@@ -83,10 +83,10 @@ erDiagram
 				text.textContent = text.textContent.replace('LBRACK', '[');
 				text.textContent = text.textContent.replace('RBRACK', ']');
 			});
-			observer.disconnect();
+			// observer.disconnect();
 			panzoom(document.getElementById('er-diagram'));
 		});
-		observer.observe(document.getElementById('er-diagram'), { attributes: true, childList: true });
+		observer.observe(document.getElementById('er-diagram'), { attributes: false, childList: true });
 	</script>
 </body>
 </html>
